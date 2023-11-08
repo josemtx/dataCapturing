@@ -26,4 +26,5 @@ public class OpenWeatherMapProvider {
         System.out.println(jsonObject.get("city"));
     }
 
+
 }
