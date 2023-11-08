@@ -7,8 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ResponseBuilder {
-    public static String sendGetRequest(double latitude, double longitude, String apikey) throws IOException {
-        String apiUrl = "https://api.openweathermap.org/data/2.5/weather";
+    public String sendGetRequest(double latitude, double longitude, String apikey) throws IOException {
+        String apiUrl = "https://api.openweathermap.org/data/2.5/forecast";
         String queryString = "&lat=" + latitude + "&lon=" + longitude + "&appid=" + apikey;
 
         URL url = new URL(apiUrl + "?" + queryString);
@@ -33,10 +33,5 @@ public class ResponseBuilder {
         } else {
             throw new IOException("HTTP GET request failed with response code: " + responseCode);
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        String response = sendGetRequest(27.99549, -15.41765, "fe649f1944e892e7eb8d4a735edd3429");
-        System.out.println(response);
     }
 }
