@@ -1,10 +1,9 @@
 package Mataix.model;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 
 public class Weather {
-    private Instant instant;
+    private Timestamp instant;
     private double temp;
     private double pop;
     private double humidity;
@@ -12,8 +11,8 @@ public class Weather {
     private double windSpeed;
     private Location Locations;
 
-    public Weather(Timestamp ts, double temp, double pop, double humidity, double clouds, double windSpeed, Location locations) {
-        this.instant = Instant.now();
+    public Weather(Timestamp instant, double temp, double pop, double humidity, double clouds, double windSpeed, Location locations) {
+        this.instant = instant;
         this.temp = temp;
         this.pop = pop;
         this.humidity = humidity;
@@ -22,7 +21,7 @@ public class Weather {
         Locations = locations;
     }
 
-    public Instant getTs() {
+    public Timestamp getTs() {
         return instant;
     }
 

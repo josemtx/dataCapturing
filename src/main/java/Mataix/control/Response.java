@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ResponseBuilder {
+public class Response {
     public String sendGetRequest(double latitude, double longitude, String apikey) throws IOException {
         String apiUrl = "https://api.openweathermap.org/data/2.5/forecast";
         String queryString = "&lat=" + latitude + "&lon=" + longitude + "&appid=" + apikey;
