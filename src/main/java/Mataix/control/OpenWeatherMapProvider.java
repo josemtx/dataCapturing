@@ -36,7 +36,7 @@ public class OpenWeatherMapProvider {
         for (JsonElement element : list) {
             String dt_txt = element.getAsJsonObject().get("dt_txt").getAsString();
 
-            // Verificar si la hora coincide con las 21:00:00
+            // Verificar si la hora coincide con las 12:00:00
             if (isTargetHour(dt_txt, "12:00:00")) {
                 JsonObject jsonObjectMain = element.getAsJsonObject().getAsJsonObject("main");
                 double temperature = jsonObjectMain.get("temp").getAsDouble();
@@ -64,7 +64,7 @@ public class OpenWeatherMapProvider {
             System.out.println("Humedad: " + weatherData.getHumidity());
             System.out.println("Nubosidad: " + weatherData.getClouds());
             System.out.println("Velocidad del viento: " + weatherData.getWindSpeed());
-            //System.out.println("Ubicación: " + weatherData.getLocations());
+            System.out.println("Ubicación: " + weatherData.getLocations());
             System.out.println("------");
         }
     }
