@@ -6,37 +6,41 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 public class SQLiteWeatherStore {
-    private static final String DATABASE_URL = "jdbc:sqlite:weather_data.db";
+    private static final String url = "jdbc:sqlite:C:\\Users\\josem\\IdeaProjects\\dataCapturing\\src\\main\\resources\\database.db";
 
-    public void saveWeatherData(Weather weatherData) {
-        try (Connection connection = DriverManager.getConnection(DATABASE_URL)) {
-            createTableIfNotExists(connection, weatherData.getLocations().getName());
+    public static void insertWeatherData(List<Weather> weatherDataList) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            if (connection != null) {
+                System.out.println("Conexión exitosa");
 
-            String insertQuery = "INSERT INTO " + weatherData.getLocations().getName() + " (timestamp, temperature, precipitation, humidity, clouds, wind_speed) VALUES (?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-                preparedStatement.setTimestamp(1, weatherData.getTs());
-                preparedStatement.setDouble(2, weatherData.getTemp());
-                preparedStatement.setDouble(3, weatherData.getPop());
-                preparedStatement.setDouble(4, weatherData.getHumidity());
-                preparedStatement.setDouble(5, weatherData.getClouds());
-                preparedStatement.setDouble(6, weatherData.getWindSpeed());
-
-                preparedStatement.executeUpdate();
+                for (Weather weatherData : weatherDataList) {
+                    insertWeatherData(connection, weatherData);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void createTableIfNotExists(Connection connection, String tableName) throws SQLException {
-        String createTableQuery = "CREATE TABLE IF NOT EXISTS " + tableName + " (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp DATETIME, temperature REAL, precipitation REAL, humidity REAL, clouds REAL, wind_speed REAL)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(createTableQuery)) {
+    private static void insertWeatherData(Connection connection, Weather weatherData) {
+        String insertDataQuery = "INSERT INTO TeldeWeather (timestamp, temperature, pop, humidity, clouds, windSpeed) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertDataQuery)) {
+            preparedStatement.setTimestamp(1, weatherData.getTs());
+            preparedStatement.setDouble(2, weatherData.getTemp());
+            preparedStatement.setDouble(3, weatherData.getPop());
+            preparedStatement.setDouble(4, weatherData.getHumidity());
+            preparedStatement.setInt(5, (int) weatherData.getClouds());
+            preparedStatement.setDouble(6, weatherData.getWindSpeed());
+
             preparedStatement.executeUpdate();
+            System.out.println("Datos insertados exitosamente");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

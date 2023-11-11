@@ -1,18 +1,18 @@
 package Mataix.model;
 
 public class Location {
-    private String name;
+    private String isla;
     private final double lat;
     private final double lon;
 
-    public Location(String name, double lat, double lon) {
-        this.name = name;
+    public Location(String isla, double lat, double lon) {
+        this.isla = isla;
         this.lat = lat;
         this.lon = lon;
     }
 
-    public String getName() {
-        return name;
+    public String getIsla() {
+        return isla;
     }
 
     public double getLat() {

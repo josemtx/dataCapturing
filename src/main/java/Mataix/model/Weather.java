@@ -9,7 +9,7 @@ public class Weather {
     private double humidity;
     private double clouds;
     private double windSpeed;
-    private Location Locations;
+    private Location Location;
 
     public Weather(Timestamp instant, double temp, double pop, double humidity, double clouds, double windSpeed, Location locations) {
         this.instant = instant;
@@ -18,7 +18,7 @@ public class Weather {
         this.humidity = humidity;
         this.clouds = clouds;
         this.windSpeed = windSpeed;
-        Locations = locations;
+        this.Location = locations;
     }
 
     public Timestamp getTs() {
@@ -45,7 +45,7 @@ public class Weather {
         return windSpeed;
     }
 
-    public Location getLocations() {
-        return Locations;
+    public Location getLocation() {
+        return Location;
     }
 }

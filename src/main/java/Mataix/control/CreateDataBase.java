@@ -20,7 +20,7 @@ public class CreateDataBase {
                 // Crear una tabla para cada isla (ejemplo con isla "Telde")
                 String createTableQuery = "CREATE TABLE IF NOT EXISTS TeldeWeather (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "timestamp DATETIME," +
+                        "timestamp DATETIME UNIQUE," +
                         "temperature REAL," +
                         "pop REAL," +
                         "humidity REAL," +

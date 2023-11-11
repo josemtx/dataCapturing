@@ -2,6 +2,7 @@ package Mataix.control;
 
 import Mataix.model.Location;
 import Mataix.model.Weather;
+import Mataix.control.SQLiteWeatherStore;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -53,6 +54,8 @@ public class OpenWeatherMapProvider {
 
                 Weather weatherData = new Weather(timestamp, temperature, probabilityOfPrecipitation, humidity, cloudiness, windSpeed, location);
                 weatherDataList.add(weatherData);
+                // Después de obtener la lista de datos meteorológicos
+                SQLiteWeatherStore.insertWeatherData(weatherDataList);
             }
         }
 
@@ -64,7 +67,7 @@ public class OpenWeatherMapProvider {
             System.out.println("Humedad: " + weatherData.getHumidity());
             System.out.println("Nubosidad: " + weatherData.getClouds());
             System.out.println("Velocidad del viento: " + weatherData.getWindSpeed());
-            System.out.println("Ubicación: " + weatherData.getLocations());
+            System.out.println("Ubicación: " + weatherData.getLocation());
             System.out.println("------");
         }
     }
