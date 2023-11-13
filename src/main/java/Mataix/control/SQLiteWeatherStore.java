@@ -34,7 +34,7 @@ public class SQLiteWeatherStore {
             preparedStatement.setDouble(2, weatherData.getTemp());
             preparedStatement.setDouble(3, weatherData.getPop());
             preparedStatement.setDouble(4, weatherData.getHumidity());
-            preparedStatement.setInt(5, (int) weatherData.getClouds());
+            preparedStatement.setDouble(5, weatherData.getClouds());
             preparedStatement.setDouble(6, weatherData.getWindSpeed());
 
             preparedStatement.executeUpdate();

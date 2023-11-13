@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CreateDataBase {
-    public static void main(String[] args) {
-        // Establecer la URL de la base de datos
+    public void create() {
         final String url = "jdbc:sqlite:C:\\Users\\josem\\IdeaProjects\\dataCapturing\\src\\main\\resources\\database.db";
 
         try (Connection connection = DriverManager.getConnection(url)) {
@@ -20,11 +19,11 @@ public class CreateDataBase {
                 // Crear una tabla para cada isla (ejemplo con isla "Telde")
                 String createTableQuery = "CREATE TABLE IF NOT EXISTS TeldeWeather (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        "timestamp DATETIME UNIQUE," +
+                        "timestamp DATETIME," +
                         "temperature REAL," +
                         "pop REAL," +
                         "humidity REAL," +
-                        "clouds INT," +
+                        "clouds REAL," +
                         "windSpeed REAL" +
                         ")";
 
