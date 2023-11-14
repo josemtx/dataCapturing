@@ -21,6 +21,9 @@ public class WeatherController {
                 new Location("La Gomera", 28.094369991798228, -17.109467831251514),
                 new Location("La Palma", 28.684160726614596, -17.76582062032028)
         );
+        for (Location location : locations) {
+            CreateDataBase.create(location.getIsla());
+        }
 
         // Instancia de OpenWeatherMapProvider con la lista de ubicaciones
         OpenWeatherMapProvider weatherProvider = new OpenWeatherMapProvider(locations);

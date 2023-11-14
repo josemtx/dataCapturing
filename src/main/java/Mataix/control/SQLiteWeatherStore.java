@@ -26,8 +26,10 @@ public class SQLiteWeatherStore {
     }
 
     private static void insertWeatherData(Connection connection, Weather weatherData) {
-        String insertDataQuery = "INSERT INTO TeldeWeather (timestamp, temperature, pop, humidity, clouds, windSpeed) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String locationName = weatherData.getLocation().getIsla().replace(" ", ""); // Eliminar espacios
+        String insertDataQuery = String.format(
+                "INSERT INTO %sWeather (timestamp, temperature, pop, humidity, clouds, windSpeed) " +
+                        "VALUES (?, ?, ?, ?, ?, ?)", locationName);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertDataQuery)) {
             preparedStatement.setTimestamp(1, weatherData.getTs());
@@ -38,7 +40,7 @@ public class SQLiteWeatherStore {
             preparedStatement.setDouble(6, weatherData.getWindSpeed());
 
             preparedStatement.executeUpdate();
-            System.out.println("Datos insertados exitosamente");
+            System.out.println("Datos insertados exitosamente en " + locationName);
         } catch (SQLException e) {
             e.printStackTrace();
         }

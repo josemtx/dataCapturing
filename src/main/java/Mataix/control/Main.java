@@ -3,7 +3,6 @@ package Mataix.control;
 public class Main {
     public static void main(String[] args) {
         // Llamada directa al WeatherController si el controlador se diseñó para ser estático
-        CreateDataBase.create();
         WeatherController.main(args);
 
         // O si prefieres instanciar el WeatherController
