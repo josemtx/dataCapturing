@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CreateDataBase {
-    public void create() {
+    public static void create() {
         final String url = "jdbc:sqlite:C:\\Users\\josem\\IdeaProjects\\dataCapturing\\src\\main\\resources\\database.db";
 
         try (Connection connection = DriverManager.getConnection(url)) {
