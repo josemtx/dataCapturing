@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,9 +51,10 @@ public class OpenWeatherMapProvider {
                 double clouds = element.getAsJsonObject().getAsJsonObject("clouds").get("all").getAsDouble();
                 double windSpeed = element.getAsJsonObject().getAsJsonObject("wind").get("speed").getAsDouble();
 
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                Instant instant = Instant.ofEpochSecond(element.getAsJsonObject().get("dt").getAsLong());
 
-                Weather weatherData = new Weather(timestamp, temperature, pop, humidity, clouds, windSpeed, location);
+                Weather weatherData = new Weather(instant, temperature, pop, humidity, clouds, windSpeed, location);
                 weatherDataList.add(weatherData);
             }
         }

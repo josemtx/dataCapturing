@@ -32,7 +32,7 @@ public class SQLiteWeatherStore {
                         "VALUES (?, ?, ?, ?, ?, ?)", locationName);
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertDataQuery)) {
-            preparedStatement.setTimestamp(1, weatherData.getTs());
+            preparedStatement.setString(1, weatherData.getTs().toString());
             preparedStatement.setDouble(2, weatherData.getTemp());
             preparedStatement.setDouble(3, weatherData.getPop());
             preparedStatement.setDouble(4, weatherData.getHumidity());

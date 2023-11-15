@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class WeatherController {
     public static void main(String[] args) {
-        // Lista de ubicaciones para las cuales deseas obtener datos meteorológicos
         List<Location> locations = Arrays.asList(
                 new Location("Gran Canaria", 27.99549, -15.41765),
                 new Location("Tenerife", 28.463850790803008, -16.25097353346818),
@@ -21,23 +23,26 @@ public class WeatherController {
                 new Location("La Gomera", 28.094369991798228, -17.109467831251514),
                 new Location("La Palma", 28.684160726614596, -17.76582062032028)
         );
+
+        // Crear tablas para cada ubicación
         for (Location location : locations) {
             CreateDataBase.create(location.getIsla());
         }
 
-        // Instancia de OpenWeatherMapProvider con la lista de ubicaciones
+        // Programar la tarea para ejecutarla cada 6 horas
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> {
+            try {
+                fetchAndStoreWeatherData(locations);
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
+        }, 0, 6, TimeUnit.HOURS);
+    }
+
+    private static void fetchAndStoreWeatherData(List<Location> locations) throws IOException, ParseException {
         OpenWeatherMapProvider weatherProvider = new OpenWeatherMapProvider(locations);
-
-        try {
-            // Obtener los datos meteorológicos
-            List<Weather> weatherDataList = weatherProvider.fetchWeatherData();
-
-            // Aquí puedes llamar a otra clase o método para insertar los datos en la base de datos
-            SQLiteWeatherStore.insertWeatherData(weatherDataList);
-
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-            // Manejo de excepciones
-        }
+        List<Weather> weatherDataList = weatherProvider.fetchWeatherData();
+        SQLiteWeatherStore.insertWeatherData(weatherDataList);
     }
 }
