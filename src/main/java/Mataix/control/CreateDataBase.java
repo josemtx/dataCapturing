@@ -12,12 +12,8 @@ public class CreateDataBase {
         try (Connection connection = DriverManager.getConnection(url)) {
             if (connection != null) {
                 System.out.println("Conexión exitosa a la base de datos.");
-
-                // Crear una declaración
                 Statement statement = connection.createStatement();
-
-                // Crear una tabla para la ubicación proporcionada
-                String tableName = locationName.replace(" ", ""); // Eliminar espacios para el nombre de la tabla
+                String tableName = locationName.replace(" ", "");
                 String createTableQuery = String.format(
                         "CREATE TABLE IF NOT EXISTS %sWeather (" +
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +

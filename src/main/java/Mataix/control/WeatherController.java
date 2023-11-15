@@ -12,7 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class WeatherController {
-    public static void main(String[] args) {
+    public static void execute() {
         List<Location> locations = Arrays.asList(
                 new Location("Gran Canaria", 27.99549, -15.41765),
                 new Location("Tenerife", 28.463850790803008, -16.25097353346818),
@@ -24,12 +24,9 @@ public class WeatherController {
                 new Location("La Palma", 28.684160726614596, -17.76582062032028)
         );
 
-        // Crear tablas para cada ubicación
         for (Location location : locations) {
             CreateDataBase.create(location.getIsla());
         }
-
-        // Programar la tarea para ejecutarla cada 6 horas
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
             try {
@@ -37,7 +34,7 @@ public class WeatherController {
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-        }, 0, 6, TimeUnit.HOURS);
+        }, 0, 15, TimeUnit.MINUTES);
     }
 
     private static void fetchAndStoreWeatherData(List<Location> locations) throws IOException, ParseException {
