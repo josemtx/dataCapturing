@@ -1,30 +1,35 @@
 # Weather Forecast
-### Desarrollo de Aplicaciones para Ciencia de Datos
-**Curso**: Segundo  
-**Titulación**: Grado en Ciencia e Ingeniería de Datos  
-**Escuela**: Escuela de Ingeniería Informática  
-**Universidad**: Universidad de Las Palmas de Gran Canaria (ULPGC)
+### Application Development for Data Science(DACD)
+**Course**: Second  
+**Degree**: Bachelor in Data Science and Engineering  
+**School**: School of Computer Engineering  
+**University**: Universidad de Las Palmas de Gran Canaria (ULPGC)
 
-## Resumen de la Funcionalidad
-El proyecto "Weather Forecast" es una aplicación Java diseñada para capturar y almacenar datos meteorológicos. Utiliza la API de OpenWeatherMap para obtener previsiones del tiempo y las almacena en una base de datos SQLite. La aplicación consulta la API cada 6 horas, recopilando datos como temperatura, probabilidad de precipitación, humedad, nubosidad y velocidad del viento para varias ubicaciones. Estos datos se utilizan para realizar análisis y predicciones meteorológicas, sirviendo como una herramienta valiosa en el campo de la ciencia de datos y el análisis meteorológico.
+## Functionality Summary
+The "Weather Forecast" project is a Java application designed to capture and store meteorological data. It utilizes the OpenWeatherMap API to fetch weather forecasts and stores the data in an SQLite database. The application queries the API every 6 hours, collecting data such as temperature, probability of precipitation, humidity, cloudiness, and wind speed for various locations. This data is used for weather analysis and prediction, serving as a valuable tool in the field of data science and meteorological analysis.
 
-## Recursos Utilizados
-- **Entorno de Desarrollo**: IntelliJ IDEA
-- **Control de Versiones**: Git, facilitando la gestión del código fuente y el seguimiento de los cambios realizados durante el desarrollo.
-- **Herramientas de Documentación**: MarkDown utilizado para la creación de este documento, facilitando una presentación clara y estructurada del proyecto.
+## Utilized Resources
+- **Development Environment**: IntelliJ IDEA
+- **Version Control**: Git, facilitating source code management and tracking changes made during development.
+- **Documentation Tools**: MarkDown used for creating this document, enabling a clear and structured presentation of the project.
 
-## Diseño
-El proyecto sigue varios principios y patrones de diseño para asegurar un código limpio, mantenible y escalable:
+## Design
+The project follows several design patterns and principles to ensure clean, maintainable, and scalable code:
 
-1. **Patrón Singleton** en clases como `SQLiteWeatherStore`, asegurando que solo exista una instancia de conexión a la base de datos durante la ejecución del programa.
+1. **Singleton Pattern** in classes like `SQLiteWeatherStore`, ensuring that only one instance of the database connection exists during the program execution.
 
-2. **Principio de Responsabilidad Única**: Cada clase en el proyecto tiene una responsabilidad única. Por ejemplo, `OpenWeatherMapProvider` se encarga exclusivamente de la lógica de obtención de datos de la API, mientras que `SQLiteWeatherStore` gestiona todas las operaciones relacionadas con la base de datos.
+2. **Single Responsibility Principle**: Each class in the project has a single responsibility. For instance, `OpenWeatherMapProvider` is solely responsible for the API data fetching logic, whereas `SQLiteWeatherStore` handles all database-related operations.
 
-3. **Inyección de Dependencias**: El proyecto utiliza la inyección de dependencias para reducir el acoplamiento entre clases. Por ejemplo, la lista de ubicaciones se pasa a `OpenWeatherMapProvider`, permitiendo que esta clase sea más flexible y fácil de probar.
+3. **Dependency Injection**: The project uses dependency injection to reduce coupling between classes. For example, the list of locations is passed to `OpenWeatherMapProvider`, making this class more flexible and testable.
 
-4. **Programación Orientada a Objetos (OOP)**: El uso de OOP facilita la organización del código, la reutilización y la extensibilidad. Las clases como `Location` y `Weather` encapsulan los datos y comportamientos relacionados.
+4. **Object-Oriented Programming (OOP)**: The use of OOP facilitates the organization of the code, reusability, and extensibility. Classes such as `Location` and `Weather` encapsulate related data and behaviors.
 
-5. **Manejo de Excepciones**: El proyecto maneja adecuadamente las excepciones, especialmente en operaciones de red y base de datos, para garantizar la estabilidad de la aplicación.
+5. **Exception Handling**: The project properly handles exceptions, especially in network and database operations, to ensure the application's stability.
 
-## Conclusión
-"Weather Forecast" es una aplicación robusta y funcional para el análisis y la predicción meteorológica. Su diseño orientado a objetos, junto con el uso de patrones de diseño y principios de desarrollo de software, la convierten en una herramienta valiosa para cualquier proyecto que requiera datos meteorológicos precisos y actualizados.
+## Class Diagram
+Below is the class diagram that illustrates the structure and dependencies in the "Weather Forecast" application:
+
+![Weather Forecast Application Class Diagram](path_to_diagram_image)
+
+## Conclusion
+"Weather Forecast" is a robust and functional application for weather analysis and prediction. Its object-oriented design, combined with the use of design patterns and software development principles, makes it a valuable tool for any project that requires accurate and up-to-date meteorological data.
