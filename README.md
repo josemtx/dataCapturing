@@ -30,6 +30,3 @@ The project follows several design patterns and principles to ensure clean, main
 Below is the class diagram that illustrates the structure and dependencies in the "Weather Forecast" application:
 
 ![image](https://github.com/josemtx/dataCapturing/blob/ca968221d39e012680ea592158b69f239f68c836/Diagrama%20Weather.png)
-
-## Conclusion
-"Weather Forecast" is a robust and functional application for weather analysis and prediction. Its object-oriented design, combined with the use of design patterns and software development principles, makes it a valuable tool for any project that requires accurate and up-to-date meteorological data.
