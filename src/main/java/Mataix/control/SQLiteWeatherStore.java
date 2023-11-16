@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class SQLiteWeatherStore {
-    private static final String url = "jdbc:sqlite:C:\\Users\\josem\\IdeaProjects\\dataCapturing\\src\\main\\resources\\database.db";
+    private static final String url = "jdbc:sqlite:src/main/resources/database.db";
 
     public static void insertWeatherData(List<Weather> weatherDataList) {
         try (Connection connection = DriverManager.getConnection(url)) {
             if (connection != null) {
-                System.out.println("Conexión exitosa");
+                System.out.println("Successful connection");
 
                 for (Weather weatherData : weatherDataList) {
                     insertWeatherData(connection, weatherData);
@@ -26,7 +26,7 @@ public class SQLiteWeatherStore {
     }
 
     private static void insertWeatherData(Connection connection, Weather weatherData) {
-        String locationName = weatherData.getLocation().getIsla().replace(" ", ""); // Eliminar espacios
+        String locationName = weatherData.getLocation().getIsland().replace(" ", "");
         String insertDataQuery = String.format(
                 "INSERT INTO %sWeather (timestamp, temperature, pop, humidity, clouds, windSpeed) " +
                         "VALUES (?, ?, ?, ?, ?, ?)", locationName);
@@ -40,7 +40,7 @@ public class SQLiteWeatherStore {
             preparedStatement.setDouble(6, weatherData.getWindSpeed());
 
             preparedStatement.executeUpdate();
-            System.out.println("Datos insertados exitosamente en " + locationName);
+            System.out.println("Data inserted successfully on " + locationName);
         } catch (SQLException e) {
             e.printStackTrace();
         }

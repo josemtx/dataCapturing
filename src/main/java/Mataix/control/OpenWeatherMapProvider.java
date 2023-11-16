@@ -40,7 +40,6 @@ public class OpenWeatherMapProvider {
 
     private void processWeatherData(JsonObject jsonObject, Location location, List<Weather> weatherDataList) throws ParseException {
         JsonArray list = jsonObject.getAsJsonArray("list");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (JsonElement element : list) {
             String dt_txt = element.getAsJsonObject().get("dt_txt").getAsString();
             if (isTargetHour(dt_txt, "12:00:00")) {

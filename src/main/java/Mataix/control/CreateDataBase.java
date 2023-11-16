@@ -11,7 +11,7 @@ public class CreateDataBase {
 
         try (Connection connection = DriverManager.getConnection(url)) {
             if (connection != null) {
-                System.out.println("Conexión exitosa a la base de datos.");
+                System.out.println("Successful connection to database.");
                 Statement statement = connection.createStatement();
                 String tableName = locationName.replace(" ", "");
                 String createTableQuery = String.format(
@@ -27,10 +27,10 @@ public class CreateDataBase {
 
                 statement.executeUpdate(createTableQuery);
 
-                System.out.println("Tabla creada exitosamente para " + locationName);
+                System.out.println("Table created successfully for " + locationName);
             }
         } catch (SQLException e) {
-            System.out.println("Error al crear la tabla para " + locationName);
+            System.out.println("Error when creating table for " + locationName);
             e.printStackTrace();
         }
     }

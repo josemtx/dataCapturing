@@ -25,7 +25,7 @@ public class WeatherController {
         );
 
         for (Location location : locations) {
-            CreateDataBase.create(location.getIsla());
+            CreateDataBase.create(location.getIsland());
         }
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
@@ -34,7 +34,7 @@ public class WeatherController {
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-        }, 0, 3, TimeUnit.HOURS);
+        }, 0, 6, TimeUnit.HOURS);
     }
 
     private static void fetchAndStoreWeatherData(List<Location> locations) throws IOException, ParseException {
