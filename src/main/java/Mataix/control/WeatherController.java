@@ -34,7 +34,7 @@ public class WeatherController {
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-        }, 0, 15, TimeUnit.MINUTES);
+        }, 0, 3, TimeUnit.HOURS);
     }
 
     private static void fetchAndStoreWeatherData(List<Location> locations) throws IOException, ParseException {

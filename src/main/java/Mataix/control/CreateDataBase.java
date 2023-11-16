@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class CreateDataBase {
     public static void create(String locationName) {
-        final String url = "jdbc:sqlite:C:\\Users\\josem\\IdeaProjects\\dataCapturing\\src\\main\\resources\\database.db";
+        final String url = "jdbc:sqlite:src/main/resources/database.db";
 
         try (Connection connection = DriverManager.getConnection(url)) {
             if (connection != null) {
