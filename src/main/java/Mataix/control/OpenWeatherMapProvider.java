@@ -50,7 +50,6 @@ public class OpenWeatherMapProvider {
                 double clouds = element.getAsJsonObject().getAsJsonObject("clouds").get("all").getAsDouble();
                 double windSpeed = element.getAsJsonObject().getAsJsonObject("wind").get("speed").getAsDouble();
                 Instant instant = Instant.ofEpochSecond(element.getAsJsonObject().get("dt").getAsLong());
-
                 Weather weatherData = new Weather(instant, temperature, pop, humidity, clouds, windSpeed, location);
                 weatherDataList.add(weatherData);
             }

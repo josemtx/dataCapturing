@@ -25,7 +25,7 @@ public class WeatherController {
         );
 
         for (Location location : locations) {
-            CreateDataBase.create(location.getIsland());
+            DataBaseCreator.create(location.getIsland());
         }
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
@@ -34,12 +34,12 @@ public class WeatherController {
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
-        }, 0, 6, TimeUnit.HOURS);
+        }, 0, 3, TimeUnit.HOURS);
     }
 
     private static void fetchAndStoreWeatherData(List<Location> locations) throws IOException, ParseException {
         OpenWeatherMapProvider weatherProvider = new OpenWeatherMapProvider(locations);
         List<Weather> weatherDataList = weatherProvider.fetchWeatherData();
-        SQLiteWeatherStore.insertWeatherData(weatherDataList);
+        SQLiteWeatherStore.insertOrUpdateWeatherData(weatherDataList);
     }
 }

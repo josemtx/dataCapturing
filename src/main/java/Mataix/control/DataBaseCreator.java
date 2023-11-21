@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateDataBase {
+public class DataBaseCreator {
     public static void create(String locationName) {
         final String url = "jdbc:sqlite:src/main/resources/database.db";
 
