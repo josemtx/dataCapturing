@@ -26,7 +26,7 @@ public class OpenWeatherMapProvider {
     public List<Weather> fetchWeatherData() throws IOException, ParseException {
         List<Weather> weatherDataList = new ArrayList<>();
         for (Location location : listLocation) {
-            String response = new Response().sendGetRequest(location.getLat(), location.getLon(), "fe649f1944e892e7eb8d4a735edd3429");
+            String response = new Response().sendGetRequest(location.getLat(), location.getLon(), "fe649f1944e892e7eb8d4a735edd3429", "metric");
             JsonObject jsonObject = convertResponseToJson(response);
             processWeatherData(jsonObject, location, weatherDataList);
         }

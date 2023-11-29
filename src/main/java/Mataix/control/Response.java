@@ -7,9 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Response {
-    public String sendGetRequest(double latitude, double longitude, String apikey) throws IOException {
+    public String sendGetRequest(double latitude, double longitude, String apikey, String units) throws IOException {
         String apiUrl = "https://api.openweathermap.org/data/2.5/forecast";
-        String queryString = "&lat=" + latitude + "&lon=" + longitude + "&appid=" + apikey;
+        String queryString = "&lat=" + latitude + "&lon=" + longitude + "&appid=" + apikey + "&units=" + units;
 
         URL url = new URL(apiUrl + "?" + queryString);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
